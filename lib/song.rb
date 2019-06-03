@@ -1,4 +1,4 @@
-# require_relative './concerns_module.rb'
+# require_relative './concerns/concerns_module.rb'
 
 class Song
   # extend Concerns::Findable
@@ -11,6 +11,7 @@ class Song
 		@name = name
 		@artist = artist
 		@genre = genre
+
 		if artist != nil
 		  self.artist = @artist
 		  self.artist.songs << self
@@ -58,6 +59,30 @@ class Song
   
   def self.find_or_create_by_name(name)
    self.find_by_name(name) ||  self.create(name)
+  end
+  
+  
+  # ("Thundercat - For Love I Come - dance.mp3")
+  def self.new_from_filename(file_name)
+      arr = file_name.split(/[-]+/)
+      arr.each {|e| e.strip!}
+      artist = arr.first
+      name = arr[1]
+      genre = arr.last.gsub( /.{4}$/, '' ) #cuts off the ".mp3" from dance
+      song = Song.new(name)
+      if artist != nil
+      song.artist = Artist.find_or_create_by_name(artist)
+      end
+      if genre != nil
+      song.genre = Genre.find_or_create_by_name(genre)
+      # song.artist.add_song(song)
+      end
+      song
+  end
+  
+  def self.create_from_filename(file_name)
+    song = self.new_from_filename(file_name)
+    song.save
   end
   
 end #Song

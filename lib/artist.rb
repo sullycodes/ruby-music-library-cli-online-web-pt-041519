@@ -1,4 +1,6 @@
 require_relative './concerns/concerns_module.rb'
+# require '/config/environment.rb'
+
 
 class Artist 
   extend Concerns::Findable
