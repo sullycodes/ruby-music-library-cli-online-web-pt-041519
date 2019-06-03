@@ -1,4 +1,7 @@
-class Artist
+require_relative './concerns_module.rb'
+
+class Artist 
+  extend Concerns::Findable
 
 	@@all = []
 	
@@ -7,6 +10,7 @@ class Artist
 	def initialize(name)
 		@name = name
 		@songs = []
+		self.save
 	end
 	
 	def self.all
@@ -43,7 +47,7 @@ class Artist
     @songs.each do |e|
       genres << e.genre
     end
-    genres
+    genres.uniq
   end
 
 end #Artist

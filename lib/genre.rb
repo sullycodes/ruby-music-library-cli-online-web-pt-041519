@@ -1,12 +1,18 @@
-class Artist
+require_relative './concerns_module.rb'
+
+class Genre
 
 	@@all = []
+
+  extend Concerns::Findable
+
 	
 	attr_accessor :name
 
 	def initialize(name)
 		@name = name
 		@songs = []
+		self.save
 	end
 	
 	def self.all
@@ -22,28 +28,28 @@ class Artist
 	end
 
   def self.create(name)
-    artist = Artist.new(name) 
-    artist.save
-    artist
+    genre = Genre.new(name) 
+    genre.save
+    genre
   end
   
   def songs 
     @songs
-  end
+  end 
   
   def add_song(song)
-    if song.artist == nil
+    # if song.genre == nil
     @songs << song
-    song.artist = self
-    end
+    # song.genre = self
+    # end
   end
   
-  def genres 
-    genres = []
+  def artists 
+    artists  = []
     @songs.each do |e|
-      genres << e.genre
+      artists  << e.artist
     end
-    genres
+    artists.uniq
   end
-
-end #Artist
+  
+end #Genre
