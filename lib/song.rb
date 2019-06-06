@@ -64,7 +64,7 @@ class Song
   
   # ("Thundercat - For Love I Come - dance.mp3")
   def self.new_from_filename(file_name)
-      arr = file_name.split(/[-]+/)
+      arr = file_name.split(/\B-/)
       arr.each {|e| e.strip!}
       artist = arr.first
       name = arr[1]
@@ -86,3 +86,5 @@ class Song
   end
   
 end #Song
+
+

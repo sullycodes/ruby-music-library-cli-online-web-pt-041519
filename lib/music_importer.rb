@@ -15,7 +15,7 @@ class MusicImporter
     end
   end
   
-  # send filename into importer which will convert into a song and artist instance via .create_from_filename
+  # send filename into importer which will convert into a song instance via .create_from_filename
   def import
     files.each do |e|
       Song.create_from_filename(e)
