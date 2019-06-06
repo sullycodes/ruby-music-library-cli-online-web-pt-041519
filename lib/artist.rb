@@ -37,7 +37,9 @@ class Artist
     @songs
   end
   
+  # NEED TO FIX!!! #add_song does not add the song to the current artist's collection of songs if it already exists therein
   def add_song(song)
+    # if !self.songs.include?(song) && song.artist == nil
     if song.artist == nil
     @songs << song
     song.artist = self
