@@ -40,16 +40,16 @@ class Artist
   # NEED TO FIX!!! #add_song does not add the song to the current artist's collection of songs if it already exists therein
   def add_song(song)
     # if !self.songs.include?(song) && song.artist == nil
-    if song.artist == nil
+    if !@songs.include?(song)
     @songs << song
-    song.artist = self
+    song.artist = self unless song.artist == self
     end
   end
   
   def genres 
     genres = []
     @songs.each do |e|
-      genres << e.genre
+      genres << e.genres
     end
     genres.uniq
   end

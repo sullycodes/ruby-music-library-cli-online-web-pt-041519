@@ -24,7 +24,7 @@ class Song
 	
 	def artist=(artist)
 	  @artist = artist
-	  artist.add_song(self)
+	  artist.add_song(self) unless artist.songs.include?(self)
 	end
 	
 	def genre=(genre)
@@ -83,6 +83,7 @@ class Song
   def self.create_from_filename(file_name)
     song = self.new_from_filename(file_name)
     song.save
+    song
   end
   
 end #Song

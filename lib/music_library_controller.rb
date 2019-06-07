@@ -47,10 +47,11 @@ class MusicLibraryController
   def list_songs_by_artist
     puts "Please enter the name of an artist:"
     user_input = gets.chomp
-    # artist = Artist.all.find { |e| user_input == e.name }
-    Artist.all.each do |e|  
-      if e.name == user_input
-        puts e.songs
+    binding.pry
+    artist = Artist.find_by_name(user_input)
+    if artist
+      artist.songs.each do |e|
+          puts e
       end
     end
   end
