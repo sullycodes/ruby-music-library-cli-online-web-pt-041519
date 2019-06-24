@@ -47,11 +47,12 @@ class Artist
   end
   
   def genres 
-    genres = []
-    @songs.each do |e|
-      genres << e.genres
-    end
-    genres.uniq
+    # genres = []
+    # @songs.each do |e|
+    #   genres << e.genres
+    # end
+    # genres.uniq
+    self.songs.map{ |s| s.genre }.uniq 
   end
 
 end #Artist
